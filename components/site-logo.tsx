@@ -1,0 +1,2 @@
+import Link from "next/link";
+export function SiteLogo(){return <Link href="/" className="focus-ring flex items-center gap-2.5 rounded-md font-semibold" aria-label="themaginui home"><span className="logo-mark grid size-7 place-items-center rounded-lg"><span className="flex items-end gap-[2px]"><i className="h-2 w-1 rounded bg-current"/><i className="h-4 w-1 rounded bg-current"/><i className="h-3 w-1 rounded bg-current"/></span></span><span className="tracking-[-.035em]">themaginui</span></Link>}
