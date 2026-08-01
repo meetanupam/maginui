@@ -1,4 +1,71 @@
-import type {Metadata} from "next";import {notFound} from "next/navigation";import {ArrowUpRight} from "lucide-react";import {pages} from "@/config/pages";import {legalDocuments} from "@/config/legal";import {LegalDocument} from "@/components/legal-document";
-export function generateStaticParams(){return Object.keys(pages).map(slug=>({slug}))}
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params,p=pages[slug],legal=legalDocuments[slug];return legal?{title:legal.title,description:legal.summary}:p?{title:p.title,description:p.description}:{} }
-export default async function EditorialPage({params}:{params:Promise<{slug:string}>}){const {slug}=await params,legal=legalDocuments[slug];if(legal)return <LegalDocument document={legal}/>;const p=pages[slug];if(!p)notFound();return <main><section className="grid-bg border-b hairline"><div className="page-wrap py-24 md:py-36"><span className="section-kicker">{p.eyebrow}</span><h1 className="section-title mt-7 max-w-5xl">{p.title}</h1><p className="mt-8 max-w-xl text-lg leading-8 muted">{p.description}</p></div></section><section className="page-wrap py-20"><div className="grid gap-px overflow-hidden rounded-2xl border hairline bg-[var(--line)] md:grid-cols-3">{p.items.map((x,i)=><article className="group min-h-80 bg-[var(--paper)] p-7" key={x.title}><div className="flex justify-between"><span className="mono text-[9px] muted">0{i+1} · {x.meta}</span><ArrowUpRight className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" size={16}/></div><div className="mt-32"><h2 className="display text-3xl">{x.title}</h2><p className="mt-3 text-sm leading-6 muted">{x.copy}</p></div></article>)}</div></section></main>}
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ArrowUpRight } from "lucide-react";
+import { pages } from "@/config/pages";
+import { legalDocuments } from "@/config/legal";
+import { LegalDocument } from "@/components/legal-document";
+export function generateStaticParams() {
+  return Object.keys(pages).map((slug) => ({ slug }));
+}
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params,
+    p = pages[slug],
+    legal = legalDocuments[slug];
+  return legal
+    ? { title: legal.title, description: legal.summary }
+    : p
+      ? { title: p.title, description: p.description }
+      : {};
+}
+export default async function EditorialPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params,
+    legal = legalDocuments[slug];
+  if (legal) return <LegalDocument document={legal} />;
+  const p = pages[slug];
+  if (!p) notFound();
+  return (
+    <main>
+      <section className="grid-bg hairline border-b">
+        <div className="page-wrap py-24 md:py-36">
+          <span className="section-kicker">{p.eyebrow}</span>
+          <h1 className="section-title mt-7 max-w-5xl">{p.title}</h1>
+          <p className="muted mt-8 max-w-xl text-lg leading-8">
+            {p.description}
+          </p>
+        </div>
+      </section>
+      <section className="page-wrap py-20">
+        <div className="hairline grid gap-px overflow-hidden rounded-2xl border bg-[var(--line)] md:grid-cols-3">
+          {p.items.map((x, i) => (
+            <article
+              className="group min-h-80 bg-[var(--paper)] p-7"
+              key={x.title}
+            >
+              <div className="flex justify-between">
+                <span className="mono muted text-[9px]">
+                  0{i + 1} · {x.meta}
+                </span>
+                <ArrowUpRight
+                  className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                  size={16}
+                />
+              </div>
+              <div className="mt-32">
+                <h2 className="display text-3xl">{x.title}</h2>
+                <p className="muted mt-3 text-sm leading-6">{x.copy}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}

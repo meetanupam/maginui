@@ -15,22 +15,6 @@ themaginui is a production-ready, source-first React component library and docum
 - Sitemap, robots directives, RSS, metadata, and custom 404
 - Reduced-motion support and accessibility guidance
 
-## Development
-
-```bash
-pnpm install
-pnpm dev
-```
-
-Open `http://localhost:3000`.
-
-## Quality checks
-
-```bash
-pnpm lint
-pnpm build
-```
-
 ## Deployment
 
 Import the repository into Vercel. The framework, build command, and output are detected automatically; no environment variables or configuration changes are required.
@@ -43,6 +27,6 @@ Import the repository into Vercel. The framework, build command, and output are 
 - `content/` — MDX documentation source
 - `lib/` — shared utilities
 - `providers/` — client context providers
-- `registry/` — typed component catalog
+- `config/components.ts` — typed component catalog
 
 MIT licensed.

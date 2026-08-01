@@ -1,2 +1,50 @@
-import Link from "next/link";import type {LegalDocument as LegalDocumentType} from "@/config/legal";
-export function LegalDocument({document}:{document:LegalDocumentType}){return <main className="page-wrap py-14 md:py-20"><div className="grid gap-12 lg:grid-cols-[220px_minmax(0,760px)] lg:gap-20"><aside><div className="sticky top-28"><Link href="/" className="text-xs muted hover:text-[var(--ink)]">← Back to themaginui</Link><nav className="mt-8 flex flex-col gap-2 text-sm"><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms of Use</Link><Link href="/license">License</Link></nav></div></aside><article className="prose-flux min-w-0"><p className="section-kicker">Legal · Updated {document.updated}</p><h1 className="display mt-5 text-5xl leading-[.95] md:text-7xl">{document.title}</h1><p className="mt-6 border-b hairline pb-10 text-lg leading-8 muted">{document.summary}</p>{document.sections.map((section,index)=><section key={section.title}><h2>{index+1}. {section.title}</h2>{section.paragraphs.map(text=><p key={text}>{text}</p>)}</section>)}<div className="mt-16 border-t hairline pt-6 text-sm muted">Questions about this document? <a className="text-[var(--ink)] underline underline-offset-4" href="mailto:legal@themaginui.dev">legal@themaginui.dev</a></div></article></div></main>}
+import Link from "next/link";
+import type { LegalDocument as LegalDocumentType } from "@/config/legal";
+export function LegalDocument({ document }: { document: LegalDocumentType }) {
+  return (
+    <main className="page-wrap py-14 md:py-20">
+      <div className="grid gap-12 lg:grid-cols-[220px_minmax(0,760px)] lg:gap-20">
+        <aside>
+          <div className="sticky top-28">
+            <Link href="/" className="muted text-xs hover:text-[var(--ink)]">
+              ← Back to themaginui
+            </Link>
+            <nav className="mt-8 flex flex-col gap-2 text-sm">
+              <Link href="/privacy">Privacy Policy</Link>
+              <Link href="/terms">Terms of Use</Link>
+              <Link href="/license">License</Link>
+            </nav>
+          </div>
+        </aside>
+        <article className="prose-flux min-w-0">
+          <p className="section-kicker">Legal · Updated {document.updated}</p>
+          <h1 className="display mt-5 text-5xl leading-[.95] md:text-7xl">
+            {document.title}
+          </h1>
+          <p className="hairline muted mt-6 border-b pb-10 text-lg leading-8">
+            {document.summary}
+          </p>
+          {document.sections.map((section, index) => (
+            <section key={section.title}>
+              <h2>
+                {index + 1}. {section.title}
+              </h2>
+              {section.paragraphs.map((text) => (
+                <p key={text}>{text}</p>
+              ))}
+            </section>
+          ))}
+          <div className="hairline muted mt-16 border-t pt-6 text-sm">
+            Questions about this document?{" "}
+            <a
+              className="text-[var(--ink)] underline underline-offset-4"
+              href="mailto:legal@themaginui.dev"
+            >
+              legal@themaginui.dev
+            </a>
+          </div>
+        </article>
+      </div>
+    </main>
+  );
+}

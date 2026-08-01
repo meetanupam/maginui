@@ -1,3 +1,61 @@
-import Link from "next/link";import {SiteLogo} from "./site-logo";
-const links={Product:[["Components","/components"],["Blocks","/blocks"],["Playground","/playground"],["Changelog","/changelog"]],Learn:[["Documentation","/docs"],["Examples","/docs/examples"],["Accessibility","/docs/accessibility"],["Roadmap","/roadmap"]],Company:[["About","/about"],["Blog","/blog"],["Contact","/contact"],["Showcase","/showcase"]],Legal:[["License","/license"],["Privacy","/privacy"],["Terms","/terms"],["RSS","/rss.xml"]]};
-export function SiteFooter(){return <footer className="border-t hairline"><div className="page-wrap grid gap-16 py-20 md:grid-cols-[1.3fr_2fr]"><div><SiteLogo/><p className="mt-5 max-w-xs text-sm leading-6 muted">Expressive React components for teams who believe software should feel considered.</p></div><div className="grid grid-cols-2 gap-8 sm:grid-cols-4">{Object.entries(links).map(([name,items])=><div className="flex flex-col gap-3 text-xs" key={name}><span className="mono mb-2 text-[9px] uppercase muted">{name}</span>{items.map(([label,href])=><Link className="hover:underline" href={href} key={href}>{label}</Link>)}</div>)}</div><div className="col-span-full flex flex-wrap justify-between gap-4 border-t hairline pt-6 mono text-[9px] uppercase muted"><span>© 2026 themaginui · MIT Licensed</span><span>Designed for people who notice details</span></div></div></footer>}
+import Link from "next/link";
+import { SiteLogo } from "./site-logo";
+const links = {
+  Product: [
+    ["Components", "/components"],
+    ["Blocks", "/blocks"],
+    ["Playground", "/playground"],
+    ["Changelog", "/changelog"],
+  ],
+  Learn: [
+    ["Documentation", "/docs"],
+    ["Examples", "/docs/examples"],
+    ["Accessibility", "/docs/accessibility"],
+    ["Roadmap", "/roadmap"],
+  ],
+  Company: [
+    ["About", "/about"],
+    ["Blog", "/blog"],
+    ["Contact", "/contact"],
+    ["Showcase", "/showcase"],
+  ],
+  Legal: [
+    ["License", "/license"],
+    ["Privacy", "/privacy"],
+    ["Terms", "/terms"],
+    ["RSS", "/rss.xml"],
+  ],
+};
+export function SiteFooter() {
+  return (
+    <footer className="hairline border-t">
+      <div className="page-wrap grid gap-16 py-20 md:grid-cols-[1.3fr_2fr]">
+        <div>
+          <SiteLogo />
+          <p className="muted mt-5 max-w-xs text-sm leading-6">
+            Expressive React components for teams who believe software should
+            feel considered.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          {Object.entries(links).map(([name, items]) => (
+            <div className="flex flex-col gap-3 text-xs" key={name}>
+              <span className="mono muted mb-2 text-[9px] uppercase">
+                {name}
+              </span>
+              {items.map(([label, href]) => (
+                <Link className="hover:underline" href={href} key={href}>
+                  {label}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className="hairline mono muted col-span-full flex flex-wrap justify-between gap-4 border-t pt-6 text-[9px] uppercase">
+          <span>© 2026 themaginui · MIT Licensed</span>
+          <span>Designed for people who notice details</span>
+        </div>
+      </div>
+    </footer>
+  );
+}

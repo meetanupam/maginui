@@ -1,3 +1,47 @@
-import type {Metadata} from "next";import "@fontsource-variable/instrument-sans";import "@fontsource/ibm-plex-mono/400.css";import "@fontsource/ibm-plex-mono/500.css";import "./globals.css";import {ThemeProvider} from "@/providers/theme-provider";import {SiteHeader} from "@/components/site-header";import {SiteFooter} from "@/components/site-footer";import {siteConfig} from "@/config/site";
-export const metadata:Metadata={metadataBase:new URL(siteConfig.url),title:{default:"themaginui — Motion with purpose",template:"%s — themaginui"},description:siteConfig.description,openGraph:{title:"themaginui",description:siteConfig.description,type:"website"},twitter:{card:"summary_large_image"}};
-export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning><body><ThemeProvider><SiteHeader/>{children}<SiteFooter/></ThemeProvider></body></html>}
+import type { Metadata } from "next";
+import "@fontsource-variable/instrument-sans";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "./globals.css";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { siteConfig } from "@/config/site";
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: "themaginui — Motion with purpose",
+    template: "%s — themaginui",
+  },
+  description: siteConfig.description,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+  },
+  openGraph: {
+    title: "themaginui",
+    description: siteConfig.description,
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
+};
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body>
+        <ThemeProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

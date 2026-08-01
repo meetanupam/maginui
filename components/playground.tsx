@@ -1,2 +1,67 @@
-"use client";import {useState} from "react";import {motion} from "motion/react";import {CopyButton} from "./copy-button";
-export function Playground(){const [radius,setRadius]=useState(16),[stiffness,setStiffness]=useState(280),[accent,setAccent]=useState("#7459ff");const code=`<motion.button\n  whileHover={{ y: -3, scale: 1.02 }}\n  transition={{ type: "spring", stiffness: ${stiffness}, damping: 24 }}\n  style={{ borderRadius: ${radius}, background: "${accent}" }}\n>Launch project</motion.button>`;return <div className="page-wrap grid gap-5 py-16 lg:grid-cols-[280px_1fr]"><aside className="rounded-2xl border hairline p-5"><span className="section-kicker">Controls</span><label className="mt-8 block text-xs">Corner radius <b className="float-right mono">{radius}px</b><input className="mt-3 w-full" type="range" min="4" max="32" value={radius} onChange={e=>setRadius(+e.target.value)}/></label><label className="mt-7 block text-xs">Spring stiffness <b className="float-right mono">{stiffness}</b><input className="mt-3 w-full" type="range" min="100" max="500" value={stiffness} onChange={e=>setStiffness(+e.target.value)}/></label><label className="mt-7 block text-xs">Accent <input className="float-right size-8" type="color" value={accent} onChange={e=>setAccent(e.target.value)}/></label></aside><section className="overflow-hidden rounded-2xl border hairline"><div className="preview-grid grid min-h-100 place-items-center"><motion.button whileHover={{y:-3,scale:1.02}} whileTap={{scale:.96}} transition={{type:"spring",stiffness,damping:24}} style={{borderRadius:radius,background:accent}} className="px-6 py-3 text-sm text-white">Launch project</motion.button></div><div className="relative bg-[#171815] p-6 text-[#e9eae4]"><pre className="overflow-auto mono text-xs leading-6">{code}</pre><div className="absolute top-3 right-3"><CopyButton value={code}/></div></div></section></div>}
+"use client";
+import { useState } from "react";
+import { motion } from "motion/react";
+import { CopyButton } from "./copy-button";
+export function Playground() {
+  const [radius, setRadius] = useState(16),
+    [stiffness, setStiffness] = useState(280),
+    [accent, setAccent] = useState("#7459ff");
+  const code = `<motion.button\n  whileHover={{ y: -3, scale: 1.02 }}\n  transition={{ type: "spring", stiffness: ${stiffness}, damping: 24 }}\n  style={{ borderRadius: ${radius}, background: "${accent}" }}\n>Launch project</motion.button>`;
+  return (
+    <div className="page-wrap grid gap-5 py-16 lg:grid-cols-[280px_1fr]">
+      <aside className="hairline rounded-2xl border p-5">
+        <span className="section-kicker">Controls</span>
+        <label className="mt-8 block text-xs">
+          Corner radius <b className="mono float-right">{radius}px</b>
+          <input
+            className="mt-3 w-full"
+            type="range"
+            min="4"
+            max="32"
+            value={radius}
+            onChange={(e) => setRadius(+e.target.value)}
+          />
+        </label>
+        <label className="mt-7 block text-xs">
+          Spring stiffness <b className="mono float-right">{stiffness}</b>
+          <input
+            className="mt-3 w-full"
+            type="range"
+            min="100"
+            max="500"
+            value={stiffness}
+            onChange={(e) => setStiffness(+e.target.value)}
+          />
+        </label>
+        <label className="mt-7 block text-xs">
+          Accent{" "}
+          <input
+            className="float-right size-8"
+            type="color"
+            value={accent}
+            onChange={(e) => setAccent(e.target.value)}
+          />
+        </label>
+      </aside>
+      <section className="hairline overflow-hidden rounded-2xl border">
+        <div className="preview-grid grid min-h-100 place-items-center">
+          <motion.button
+            whileHover={{ y: -3, scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: "spring", stiffness, damping: 24 }}
+            style={{ borderRadius: radius, background: accent }}
+            className="px-6 py-3 text-sm text-white"
+          >
+            Launch project
+          </motion.button>
+        </div>
+        <div className="relative bg-[#171815] p-6 text-[#e9eae4]">
+          <pre className="mono overflow-auto text-xs leading-6">{code}</pre>
+          <div className="absolute top-3 right-3">
+            <CopyButton value={code} />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
